@@ -10,12 +10,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - name: Remove Old Docker Image
-        #run: |
-          #ssh user@your-server-ip "docker stop your-container-name || true"
-          #ssh user@your-server-ip "docker rm your-container-name || true"
-          #ssh user@your-server-ip "docker rmi your-image-name:your-tag || true"
-        #env:
-          #SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          ssh user@your-server-ip "docker stop your-container-name || true"
+          ssh user@your-server-ip "docker rm your-container-name || true"
+          ssh user@your-server-ip "docker rmi your-image-name:your-tag || true"
+        env:
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       - name: Build Docker Image
         run: |
           docker build -t your-image-name:your-tag .
