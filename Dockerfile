@@ -4,9 +4,9 @@ WORKDIR /app
 # Copy package.json and package-lock.json separately to leverage Docker's build cache
 COPY package*.json ./
 # Copy the rest of the application source code
-RUN npm install
 COPY . .
 # Build the application
+RUN npm install
 RUN npm run build
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
