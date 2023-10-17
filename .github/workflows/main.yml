@@ -20,13 +20,13 @@ jobs:
         run: |
           docker build -t your-image-name:your-tag .
         working-directory: path/to/your/dockerfile
-      - name: Copy Docker Image to Server
-        run: |
-          scp your-image-name:your-tag user@your-server-ip:/path/on/server
-        env:
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-      - name: SSH into Server and Deploy
-        run: |
-          ssh user@your-server-ip "docker run -d --name your-container-name -p 80:80 your-image-name:your-tag"
-        env:
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+      #- name: Copy Docker Image to Server
+     #   run: |
+       #   scp your-image-name:your-tag user@your-server-ip:/path/on/server
+       # env:
+         # SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+    #  - name: SSH into Server and Deploy
+     #   run: |
+      #    ssh user@your-server-ip "docker run -d --name your-container-name -p 80:80 your-image-name:your-tag"
+      #  env:
+        #  SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
