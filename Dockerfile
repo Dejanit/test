@@ -7,7 +7,7 @@ RUN npm install
 # Copy the rest of the application source code
 COPY . .
 # Build the application
-#RUN npm run build
+# RUN npm run build
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
 # Remove the default Nginx configuration
