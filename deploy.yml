@@ -1,0 +1,31 @@
+name: Deploy to Remote server
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Check if Docker container is running
+        id: check_container
+        run: |
+          if docker ps --format '{{.Names}}' | grep -q '^bex3-frontend$'; then
+            echo "Container 'bex3-frontend' is running."
+            echo "::set-output name=container_running::true"
+          else
+            echo "Container 'bex3-frontend' is not running."
+            echo "::set-output name=container_running::false"
+          fi
+
+      - name: Stop and remove existing Docker container (if running)
+        if: steps.check_container.outputs.container_running == 'true'
+        run: docker stop bex3-frontend && docker rm bex3-frontend || true
+
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: docker build -t bex3 .
+      - name: Run Docker container
+        run: docker run -d -p 5173:80 --name bex3-frontend bex3
