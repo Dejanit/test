@@ -13,6 +13,6 @@ jobs:
           path: ./ # Specify the path to your Dockerfile directory
       - name: Build and Run Docker Container
         run: |
-          docker build -t kreativnoime:kreativno.
+          docker build -t kreativnoime:kreativno .
           docker run -d --name kreativnoime -p 80:80 kreativnoime:kreativno
         working-directory: ./ # Specify the path to your Dockerfile directory
