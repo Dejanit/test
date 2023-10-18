@@ -1,20 +1,18 @@
 name: Build and Run Docker Container
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build-and-run:
-    runs-on: self-hosted
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-
+        with:
+          path: ./path/to/your/dockerfile-directory # Specify the path to your Dockerfile directory
       - name: Build and Run Docker Container
         run: |
-          docker build -t your-image-name:your-tag .
-          docker run -d --name your-container-name -p 80:80 your-image-name:your-tag
-        working-directory: ./
+          docker build -t kreativnoime: kreativno.
+          docker run -d --name kreativnoime -p 80:80 kreativnoime:kreativno
+        working-directory: ./path/to/your/dockerfile-directory # Specify the path to your Dockerfile directory
