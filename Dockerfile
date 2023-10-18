@@ -1,5 +1,6 @@
 # Stage 1: Build the Node.js application
 FROM node:14 AS build
+RUN mkdir -p /app
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
