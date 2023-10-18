@@ -10,9 +10,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-          path: ./path/to/your/dockerfile-directory # Specify the path to your Dockerfile directory
+          path: ./ # Specify the path to your Dockerfile directory
       - name: Build and Run Docker Container
         run: |
           docker build -t kreativnoime: kreativno.
           docker run -d --name kreativnoime -p 80:80 kreativnoime:kreativno
-        working-directory: ./path/to/your/dockerfile-directory # Specify the path to your Dockerfile directory
+        working-directory: ./ # Specify the path to your Dockerfile directory
