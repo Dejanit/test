@@ -21,7 +21,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t my-react-app .
-        working-directory: ./path/to/your/app
+        working-directory: ./
 
       - name: Deploy to Docker
         run: |
