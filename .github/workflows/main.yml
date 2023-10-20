@@ -1,9 +1,9 @@
 name: Deploy to Docker
 
 on:
-  push:
-    branches:
-      - main
+ # push:
+   # branches:
+      #- main
 
 jobs:
   build:
@@ -18,6 +18,12 @@ jobs:
         with:
           node-version: 14
 
+      - name: Build React app
+        run: |
+          npm install
+          npm run build
+        working-directory: ./your-react-app-directory
+
       - name: Build Docker image
         run: |
           docker build -t my-react-app .
@@ -25,4 +31,7 @@ jobs:
 
       - name: Deploy to Docker
         run: |
-          docker run -d -p 80:80 my-react-app:latest
+          docker stop my-react-app-container || true
+          docker rm my-react-app-container || true
+          docker run -d -p 80:80 --name my-react-app-container my-react-app
+        working-directory: ./
