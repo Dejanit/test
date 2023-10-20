@@ -23,7 +23,7 @@ jobs:
         run: |
           docker buildx create --use
           docker buildx inspect
-          docker build -t dejanit:latest dejanit .
+          docker build -t dejanit:latest .
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker push dejanit/dejanit:latest
+          docker push dejanit:latest
 
