@@ -22,8 +22,7 @@ jobs:
         run: |
           npm install
           npm run build
-        working-directory: ./your-react-app-directory
-
+        working-directory: ./
       - name: Build Docker image
         run: |
           docker build -t my-react-app .
