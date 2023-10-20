@@ -1,23 +1,23 @@
-# Use an official Node.js runtime as the base image
+# Use an official Node runtime as a parent image
 FROM node:14
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install project dependencies
+# Install app dependencies
 RUN npm install
 
-# Copy the entire project directory into the container
+# Copy the rest of the application code to the container
 COPY . .
 
 # Build the React app
 RUN npm run build
 
-# Expose a port to run your React app (e.g., 80)
+# Expose a port (if your app needs to listen on a specific port)
 EXPOSE 80
 
-# Start the React app when the container starts
+# Define the command to run your app
 CMD ["npm", "start"]
