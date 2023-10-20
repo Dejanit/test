@@ -1,26 +1,28 @@
-name: Build react
+name: Deploy to Docker
 
 on:
   push:
     branches:
-      - main
+     # - main
 
 jobs:
-  build_and_deploy:
-    runs-on: self-hosted
+  build:
+    runs-on: self-hosted 
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
 
-    - name: Build Docker Image
-      run: docker build -t my-react-app .
-      working-directory: ./
+      - name: Build Docker image
+        run: |
+          docker build -t my-react-app .
+        working-directory: ./path/to/your/app
 
-    - name: Run Docker Container
-      run: docker run -d -p 80:80 my-react-app
+      - name: Deploy to Docker
+        run: |
+          docker run -d -p 80:80 my-react-app:latest
