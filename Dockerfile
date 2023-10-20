@@ -1,23 +1,11 @@
-# Use an official Node runtime as a parent image
-FROM node:14
+# Use an official Nginx image as the parent image
+FROM nginx:latest
 
-# Set the working directory in the container
-WORKDIR /app
+# Remove the default Nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
+# Copy your custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/
 
-# Install app dependencies
-RUN npm install
-
-# Copy the rest of the application code to the container
-COPY . .
-
-# Build the React app
-RUN npm run build
-
-# Expose a port (if your app needs to listen on a specific port)
-EXPOSE 80
-
-# Define the command to run your app
-CMD ["npm", "start"]
+# Copy the built React app files to the Nginx web root
+COPY build/ /usr/share/nginx/html
